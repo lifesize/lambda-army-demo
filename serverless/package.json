@@ -1,5 +1,5 @@
 {
-  "name": "league-of-lambdas",
+  "name": "lambda-army-demo",
   "version": "1.0.0",
   "description": "Example of using lambdas for load(ish) testing",
   "main": "index.js",

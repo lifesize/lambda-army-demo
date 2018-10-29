@@ -1,5 +1,5 @@
 {
-  "name": "artillery-load",
+  "name": "artillery-tests",
   "version": "1.0.0",
   "description": "`npm install -g artillery artillery-engine-lambda`",
   "main": "index.js",
