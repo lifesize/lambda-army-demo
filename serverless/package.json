@@ -1,0 +1,57 @@
+{
+  "name": "league-of-lambdas",
+  "version": "1.0.0",
+  "description": "Example of using lambdas for load(ish) testing",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "deploy": "npm run build && serverless deploy"
+  },
+  "author": "Bob Lubecker",
+  "license": "ISC",
+  "dependencies": {
+    "@serverless-chrome/lambda": "^1.0.0-55",
+    "aws-sdk": "^2.343.0",
+    "axios": "^0.18.0",
+    "puppeteer-core": "1.9.0",
+    "request-promise-native": "^1.0.5",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/aws-sdk": "^2.7.0",
+    "@types/jest": "^23.3.7",
+    "@types/node": "^9.3.0",
+    "@types/puppeteer": "1.9.0",
+    "jest": "^23.6.0",
+    "prettier": "^1.6.1",
+    "puppeteer": "1.9.0",
+    "serverless": "^1.32.0",
+    "serverless-plugin-chrome": "^1.0.0-55",
+    "ts-jest": "^23.10.4",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "ts-jest"
+    },
+    "globals": {
+      "ts-jest": {
+        "tsConfig": "tsconfig.json"
+      }
+    },
+    "testMatch": [
+      "**/test/*.test.+(ts|tsx|js)"
+    ],
+    "testPathIgnorePatterns": [
+      "build"
+    ]
+  }
+}

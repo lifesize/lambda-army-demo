@@ -1,0 +1,71 @@
+service: puppeteer-lambda
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - dynamodb:*
+      Resource:
+        Fn::GetAtt:
+          - PuppeteerHrefs
+          - Arn
+    - Effect: "Allow"
+      Action:
+        - "s3:PutObject"
+      Resource:
+        Fn::Join:
+          - ""
+          - - "arn:aws:s3:::"
+            - Ref: PuppeteerScreenshots
+            - "/*"
+  environment:
+    PAGE_LOAD_TIMEOUT: "20000"
+    LOGGING: true
+
+plugins:
+  - serverless-plugin-chrome
+
+package:
+  exclude:
+    - node_modules/puppeteer/.local-chromium/** # exclude puppeteer chrome if exists
+
+resources: # CloudFormation template syntax
+  Resources:
+    PuppeteerScreenshots:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: puppeteer-screenshots # change my name to a bucket that does not exist!
+    PuppeteerHrefs:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: puppeteer-hrefs
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+functions:
+  login:
+    description: Login to test app
+    memorySize: 1536
+    timeout: 300
+    handler: build/handlers/login.default
+  getHrefs:
+    description: Get hrefs on URL
+    memorySize: 1536
+    timeout: 300
+    handler: build/handlers/getHrefs.default
+  screenshot:
+    description: Take screenshot of URL
+    memorySize: 1536
+    timeout: 300
+    handler: build/handlers/screenshot.default

@@ -1,0 +1,28 @@
+config:
+  target: "puppeteer-lambda-dev-screenshot"
+  lambda:
+    region: "us-east-1"
+  variables:
+    duration:
+      - "1"
+    loadAmount:
+      - "5"
+  phases:
+    - duration: 1
+      arrivalCount: 5
+  payload:
+    path: "../data/urls.csv"
+    fields:
+      - "url"
+    order: "sequence"
+  engines:
+    lambda: {}
+scenarios:
+  - engine: "lambda"
+    flow:
+      - invoke:
+          clientContext: '{"app": "Screenshot Load"}'
+          invocationType: "Event"
+          logType: "Tail"
+          payload: '{"url": "{{ url }}" }'
+      - think: 1

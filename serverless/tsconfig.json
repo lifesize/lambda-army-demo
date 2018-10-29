@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "build",
+    "target": "es5",
+    "noImplicitAny": true,
+    "sourceMap": false,
+    "declaration": false,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "lib": ["es6", "esnext", "dom"],
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": ["node_modules", "typings"]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "artillery-load",
+  "version": "1.0.0",
+  "description": "`npm install -g artillery artillery-engine-lambda`",
+  "main": "index.js",
+  "scripts": {
+    "test:login": "node_modules/.bin/artillery run tests/login.yaml",
+    "test:screenshot": "node_modules/.bin/artillery run tests/screenshot.yaml",
+    "test:href": "node_modules/.bin/artillery run tests/hrefs.yaml"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "artillery": "^1.6.0-24",
+    "artillery-engine-lambda": "thekiiingbob/artillery-engine-lambda#kiiingbob.use_core_from_main_package"
+  }
+}

@@ -1,0 +1,7 @@
+serverless/test/screenshots/*.png
+serverless/build
+serverless/.serverless
+
+.DS_Store
+package-lock.json
+node_modules
